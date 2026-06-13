@@ -82,7 +82,6 @@ test('swipe advances exactly one view; in-grid swipe pages tiles', async ({ page
   await settle(page, 1100);
 
   const swipe = async (x1, x2, y) => {
-    await page.touchscreen.tap(x1, y).catch(() => {});
     const cdp = await page.context().newCDPSession(page);
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: x1, y }] });
     for (let i = 1; i <= 6; i += 1) {

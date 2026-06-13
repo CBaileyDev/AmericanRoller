@@ -5,6 +5,16 @@
    emulated, ~660px worst-case real iOS). 1fr gaps absorb slack.
    ============================================================ */
 
+/* per-view emblem accent — the signature end-cap mark re-skins
+   as you move through the site */
+.view--home { --emblem-accent: var(--red); }
+.view--products { --emblem-accent: var(--steel); }
+.view--lining { --emblem-accent: var(--red-hot); }
+.view--industries { --emblem-accent: var(--paper-dim); }
+.view--way { --emblem-accent: var(--steel); }
+.view--locations { --emblem-accent: var(--red); }
+.view--quote { --emblem-accent: var(--red-hot); }
+
 /* ---------------------------------------------- V1 · HOME
    Desktop budget: copy column ≈ 470 + pillars ≈ 100 → ~600/660
    Mobile budget:  head 130 + cards 150 + link 20 + stats 96
