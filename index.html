@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<title>American Roller Company · Rollers, Coatings &amp; Linings</title>
+<meta name="description" content="American Roller Company — the trusted leader in roller coverings, industrial coatings, core fabrication, and tank &amp; rubber lining. Est. 1938 · Union Grove, WI.">
+<meta name="theme-color" content="#14171A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/views.css">
+<link rel="stylesheet" href="css/motion.css">
+<script type="module" src="js/main.js"></script>
+<noscript><style>.view[data-view="home"]{opacity:1;visibility:visible;transform:none}</style></noscript>
+</head>
+<body>
+
+<!-- ======================= SHARED SVG DEFS ======================= -->
+<svg class="svg-defs" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <linearGradient id="gradSteel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#3a4046"/>
+      <stop offset=".18"  stop-color="#5a626b"/>
+      <stop offset=".38"  stop-color="#c9ced4"/>
+      <stop offset=".52"  stop-color="#99a0a8"/>
+      <stop offset=".58"  stop-color="#6d747d"/>
+      <stop offset=".8"   stop-color="#3d434a"/>
+      <stop offset="1"    stop-color="#24282d"/>
+    </linearGradient>
+    <linearGradient id="gradSteelH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"    stop-color="#31373d"/>
+      <stop offset=".2"   stop-color="#59616a"/>
+      <stop offset=".42"  stop-color="#c2c8ce"/>
+      <stop offset=".6"   stop-color="#848c95"/>
+      <stop offset=".82"  stop-color="#3c4249"/>
+      <stop offset="1"    stop-color="#23272c"/>
+    </linearGradient>
+    <linearGradient id="gradRubber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#22252b"/>
+      <stop offset=".34" stop-color="#3b414a"/>
+      <stop offset=".5"  stop-color="#4d545f"/>
+      <stop offset=".68" stop-color="#31363e"/>
+      <stop offset="1"   stop-color="#191c20"/>
+    </linearGradient>
+    <linearGradient id="gradCoat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#6e0817"/>
+      <stop offset=".3"  stop-color="#C8102E"/>
+      <stop offset=".48" stop-color="#e85050"/>
+      <stop offset=".62" stop-color="#c01029"/>
+      <stop offset="1"   stop-color="#530710"/>
+    </linearGradient>
+    <radialGradient id="gradCap" cx=".42" cy=".42" r=".75">
+      <stop offset="0"   stop-color="#d9dde1"/>
+      <stop offset=".45" stop-color="#8a929b"/>
+      <stop offset=".8"  stop-color="#454b52"/>
+      <stop offset="1"   stop-color="#2a2e33"/>
+    </radialGradient>
+    <linearGradient id="gradSheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"  stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#ffffff" stop-opacity=".26"/>
+      <stop offset="1"  stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="patBlast" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#5b636c"/>
+      <circle cx="2" cy="2.5" r=".9" fill="#c9ced4"/>
+      <circle cx="6" cy="6" r=".8" fill="#2a2e33"/>
+      <circle cx="5" cy="1.5" r=".6" fill="#2a2e33"/>
+      <circle cx="1.5" cy="6.5" r=".7" fill="#c9ced4"/>
+    </pattern>
+    <pattern id="patGrid" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M26 0H0v26" fill="none" stroke="#EEF0F2" stroke-opacity=".05" stroke-width="1"/>
+    </pattern>
+
+    <!-- Emblem: roller end-cap -->
+    <symbol id="emblem" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="12" cy="12" r="3.2" fill="currentColor"/>
+      <path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="currentColor" stroke-width="1.6"/>
+    </symbol>
+
+    <!-- UI / service icons (24×24, stroke=currentColor) -->
+    <symbol id="i-roller" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="8" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1 12h3M20 12h3" stroke="currentColor" stroke-width="1.5"/><ellipse cx="18" cy="12" rx="2" ry="4" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.5 6.5a4 4 0 0 0-5.6 4.6L4 16l-1 3 3-1 4.9-4.9a4 4 0 0 0 4.6-5.6L13 10l-2-2 3.5-1.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-spray" viewBox="0 0 24 24"><path d="M4 9h6v10H4zM7 9V6h3l2-2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M15 7h2M15 11h3M15 15h2M19 9h2M19 13h2" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-tank" viewBox="0 0 24 24"><path d="M5 8a7 3 0 0 1 14 0v8a7 3 0 0 1-14 0z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8a7 3 0 0 0 14 0" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M8 13h8" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2"/></symbol>
+    <symbol id="i-drawing" viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M15 3v4h4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-thermo" viewBox="0 0 24 24"><rect x="3" y="9" width="14" height="6" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M19 7v10M21 9v6" stroke="currentColor" stroke-width="1.5"/><path d="M6 12h8" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2"/></symbol>
+    <symbol id="i-idler" viewBox="0 0 24 24"><rect x="6" y="9" width="12" height="6" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 6v12M21 6v12" stroke="currentColor" stroke-width="1.5"/><path d="M3 12h3M18 12h3" stroke="currentColor" stroke-width="1.2"/></symbol>
+    <symbol id="i-spreader" viewBox="0 0 24 24"><path d="M3 14q9-6 18 0" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 18q9-6 18 0" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 8l-2-3M12 7V4M17 8l2-3" stroke="currentColor" stroke-width="1.3"/></symbol>
+    <symbol id="i-blueprint" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 18v3M17 18v3" stroke="currentColor" stroke-width="1.3"/><circle cx="10" cy="11" r="3.4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M14 8h4M14 11h4M14 14h2" stroke="currentColor" stroke-width="1.2"/></symbol>
+
+    <!-- Industry glyphs -->
+    <symbol id="i-battery" viewBox="0 0 24 24"><rect x="4" y="7" width="15" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M21 10v4" stroke="currentColor" stroke-width="2"/><path d="M12 9l-2.5 3h3L10 15" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+    <symbol id="i-weave" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.3"/><path d="M7 3v18M12 3v18M17 3v18" stroke="currentColor" stroke-width="1.3" stroke-dasharray="3 2.6"/></symbol>
+    <symbol id="i-pouch" viewBox="0 0 24 24"><path d="M7 4h10l2 4-2 12H9L7 8z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 8h12" stroke="currentColor" stroke-width="1.2"/><path d="M10 4c0-1.5 4-1.5 4 0" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+    <symbol id="i-bottle" viewBox="0 0 24 24"><path d="M10 3h4v3l2 4v10a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V10l2-4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 14h8" stroke="currentColor" stroke-width="1.2"/></symbol>
+    <symbol id="i-glass" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 16L16 8M12 18l6-6" stroke="currentColor" stroke-width="1.2"/></symbol>
+    <symbol id="i-medical" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="i-film" viewBox="0 0 24 24"><path d="M3 8q4.5-3 9 0t9 0M3 13q4.5-3 9 0t9 0M3 18q4.5-3 9 0t9 0" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+    <symbol id="i-press" viewBox="0 0 24 24"><circle cx="8" cy="9" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="9" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 18h20" stroke="currentColor" stroke-width="1.4"/><path d="M2 18q10-4 20 0" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
+    <symbol id="i-paperroll" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M16.5 10 21 19H8" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+    <symbol id="i-beam" viewBox="0 0 24 24"><path d="M5 4h14M5 20h14M9 4v16M15 4v16" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-tape" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="11" r="2.6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M17.5 14.5 21 18h-8" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+    <symbol id="i-tire" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="1.2"/></symbol>
+    <symbol id="i-tissue" viewBox="0 0 24 24"><path d="M3 16V8l4 3 5-5 4 4 5-3v8" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3 16h18v3H3z" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+    <symbol id="i-wood" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 10q4 1 0 4M12 9q-3 3 1 6M17 10q-2 2 1 4" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 64 64"><circle class="check-ring" cx="32" cy="32" r="28" fill="none" stroke="currentColor" stroke-width="3"/><path class="check-mark" d="M20 33l9 9 16-19" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- ======================= HEADER ======================= -->
+<header class="site-header" role="banner">
+  <a class="brand" href="#/home" data-view-link="home" aria-label="American Roller — home">
+    <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="3" fill="var(--red)"/><circle class="brand-ring" cx="12" cy="12" r="6.5" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="2" fill="#fff"/></svg>
+    <span class="brand-name">American&nbsp;Roller</span>
+  </a>
+
+  <nav class="main-nav" aria-label="Primary">
+    <a href="#/home"       data-view-link="home">Home</a>
+    <a href="#/products"   data-view-link="products"><span class="label-long">Products &amp; Services</span><span class="label-short">Products</span></a>
+    <a href="#/lining"     data-view-link="lining"><span class="label-long">Tank &amp; Lining</span><span class="label-short">Lining</span></a>
+    <a href="#/industries" data-view-link="industries">Industries</a>
+    <a href="#/way"        data-view-link="way">Our Way</a>
+    <a href="#/locations"  data-view-link="locations">Locations</a>
+  </nav>
+
+  <div class="nav-mobile">
+    <button class="nav-pop-btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="nav-pop">
+      <span class="nav-pop-current">Home</span>
+      <svg viewBox="0 0 12 12" aria-hidden="true" width="10" height="10"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+    </button>
+    <div class="nav-pop" id="nav-pop" hidden>
+      <a href="#/home"       data-view-link="home"       data-short="Home">Home</a>
+      <a href="#/products"   data-view-link="products"   data-short="Products">Products &amp; Services</a>
+      <a href="#/lining"     data-view-link="lining"     data-short="Tank Lining">Tank &amp; Rubber Lining</a>
+      <a href="#/industries" data-view-link="industries" data-short="Industries">Industries</a>
+      <a href="#/way"        data-view-link="way"        data-short="Our Way">The American Roller Way</a>
+      <a href="#/locations"  data-view-link="locations"  data-short="Locations">Locations</a>
+      <a href="#/quote"      data-view-link="quote"      data-short="Quote">Request a Quote</a>
+    </div>
+  </div>
+
+  <a class="btn-quote" href="#/quote" data-view-link="quote" data-magnetic>
+    <span class="label-long">Request a Quote</span><span class="label-short">Quote</span>
+  </a>
+</header>
+
+<!-- ======================= STAGE ======================= -->
+<main class="stage" id="stage">
+
+  <!-- ============ VIEW 1 · HOME ============ -->
+  <section class="view view--home" id="view-home" data-view="home" data-index="0" aria-labelledby="home-title">
+    <div class="home-grid">
+      <div class="home-copy">
+        <p class="eyebrow" data-stagger><svg class="emblem" aria-hidden="true"><use href="#emblem"/></svg>American Roller Company · Est. 1938</p>
+        <h1 class="hero-headline" id="home-title">
+          <span class="hl-line"><span class="hl-inner">We take care of</span></span>
+          <span class="hl-line"><span class="hl-inner">your rollers <em>&amp; parts.</em></span></span>
+        </h1>
+        <p class="hero-sub" data-stagger><span class="label-long">The trusted leader in aftermarket roller and parts repair, refurbishment, and performance — the industry's largest, most diverse provider of roller coverings, coatings, and core solutions, with engineers, research scientists, and field technicians in-house.</span><span class="label-short">The trusted leader in aftermarket roller and parts repair, refurbishment, and performance.</span></p>
+
+        <div class="intent-cards">
+          <a class="intent-card" href="#/quote?type=new-roller" data-stagger>
+            <svg class="ic-icon" aria-hidden="true"><use href="#i-roller"/></svg>
+            <span class="ic-name">New Roller</span><span class="ic-go">Start a quote</span>
+          </a>
+          <a class="intent-card" href="#/quote?type=roller-repair" data-stagger>
+            <svg class="ic-icon" aria-hidden="true"><use href="#i-wrench"/></svg>
+            <span class="ic-name">Roller Repair</span><span class="ic-go">Start a quote</span>
+          </a>
+          <a class="intent-card" href="#/quote?type=industrial-coating" data-stagger>
+            <svg class="ic-icon" aria-hidden="true"><use href="#i-spray"/></svg>
+            <span class="ic-name">Industrial Coating</span><span class="ic-go">Start a quote</span>
+          </a>
+          <a class="intent-card intent-card--new" href="#/quote?type=tank-lining" data-stagger>
+            <svg class="ic-icon" aria-hidden="true"><use href="#i-tank"/></svg>
+            <span class="ic-name">Tank &amp; Rubber Lining<span class="tag-new">New</span></span><span class="ic-go">Start a quote</span>
+          </a>
+        </div>
+        <a class="engineer-link" href="#/quote" data-view-link="quote" data-stagger>Talk to an Engineer<span class="arrow">→</span></a>
+
+        <dl class="stats" data-stagger>
+          <div class="stat"><dd><span class="count" data-count="1938" data-count-from="1900">1938</span></dd><dt>Established</dt></div>
+          <div class="stat"><dd><span class="count" data-count="15">15</span>+</dd><dt>Facilities · U.S., Canada &amp; China</dt></div>
+          <div class="stat"><dd><span class="count" data-count="14">14</span></dd><dt>Industries served</dt></div>
+          <div class="stat"><dd><span class="count" data-count="8">8</span></dd><dt>Global licensee partners</dt></div>
+        </dl>
+      </div>
+
+      <div class="home-visual" data-stagger>
+        <button class="signature" type="button" aria-pressed="false" aria-label="Roller cross-section — press to peel the layers apart">
+          <svg class="roller-svg" viewBox="0 0 700 460" role="img" aria-label="Cutaway of an industrial roller: steel core, elastomer covering, surface coating">
+            <defs>
+              <clipPath id="clipRollerBody"><rect x="260" y="152" width="116" height="156"/><rect x="376" y="144" width="204" height="172"/></clipPath>
+              <clipPath id="clipRollerAll"><rect x="56" y="214" width="48" height="32"/><rect x="102" y="178" width="160" height="104"/><rect x="260" y="152" width="118" height="156"/><rect x="376" y="144" width="230" height="172"/><rect x="604" y="216" width="42" height="28"/></clipPath>
+            </defs>
+            <g class="rx-core">
+              <rect x="56" y="214" width="48" height="32" rx="4" fill="#4a5158"/>
+              <ellipse cx="56" cy="230" rx="7" ry="16" fill="#646c74"/>
+              <rect x="102" y="178" width="478" height="104" fill="url(#gradSteel)"/>
+              <ellipse cx="102" cy="230" rx="16" ry="52" fill="#555d65"/>
+            </g>
+            <g class="rx-elast">
+              <ellipse cx="260" cy="230" rx="22" ry="78" fill="#2b2f36"/>
+              <ellipse cx="260" cy="230" rx="14" ry="50" fill="#565e66"/>
+              <rect x="260" y="152" width="320" height="156" fill="url(#gradRubber)"/>
+            </g>
+            <g class="rx-coat">
+              <ellipse cx="376" cy="230" rx="24" ry="86" fill="#8c0c20"/>
+              <ellipse cx="376" cy="230" rx="19" ry="76" fill="#2b2f36"/>
+              <rect x="376" y="144" width="204" height="172" fill="url(#gradCoat)"/>
+            </g>
+            <g class="rx-tex" clip-path="url(#clipRollerBody)">
+              <g class="rx-helix" stroke="#ffffff" stroke-opacity=".06" stroke-width="9">
+                <path d="M240 330 L320 130M280 330 L360 130M320 330 L400 130M360 330 L440 130M400 330 L480 130M440 330 L520 130M480 330 L560 130M520 330 L600 130M560 330 L640 130M600 330 L680 130"/>
+              </g>
+            </g>
+            <g class="rx-cap">
+              <ellipse cx="580" cy="230" rx="26" ry="86" fill="url(#gradCap)"/>
+              <g transform="translate(580 230) scale(.3 1)">
+                <g class="rx-spin">
+                  <circle r="74" fill="none" stroke="#2a2e33" stroke-width="5"/>
+                  <path d="M0-70V-24M0 24v46M-70 0h46M24 0h46M-49-49l32 32M17 17l32 32M49-49L17-17M-17 17l-32 32" stroke="#2f343a" stroke-width="7"/>
+                  <circle r="20" fill="#3c4249"/>
+                  <circle r="7" fill="#191c20"/>
+                </g>
+              </g>
+              <rect x="604" y="216" width="36" height="28" rx="4" fill="#4a5158"/>
+              <ellipse cx="640" cy="230" rx="6" ry="14" fill="#646c74"/>
+            </g>
+            <g class="rx-sheenwrap" clip-path="url(#clipRollerAll)">
+              <rect class="rx-sheen" x="-180" y="110" width="130" height="250" fill="url(#gradSheen)" transform="skewX(-16)"/>
+            </g>
+            <g class="rx-callouts" aria-hidden="true">
+              <g class="callout co-1"><path d="M160 176 L160 120 L96 120" fill="none"/><text x="92" y="112" text-anchor="start">STEEL CORE</text></g>
+              <g class="callout co-2"><path d="M318 312 L318 372 L370 372" fill="none"/><text x="318" y="394" text-anchor="start">ELASTOMER COVERING · ARCOMAX</text></g>
+              <g class="callout co-3"><path d="M480 142 L480 96 L520 96" fill="none"/><text x="524" y="100" text-anchor="start">SURFACE COATING</text></g>
+            </g>
+            <g class="rx-dim" aria-hidden="true">
+              <path d="M102 424h478M102 418v12M580 418v12" fill="none"/>
+              <text x="341" y="446" text-anchor="middle">PROFILE · .0001″ LASER-VERIFIED</text>
+            </g>
+          </svg>
+          <span class="signature-hint" aria-hidden="true">Core · Covering · Coating — <span class="hint-tap">tap</span><span class="hint-click">click</span> to peel</span>
+        </button>
+      </div>
+
+      <ul class="pillars" data-stagger>
+        <li class="pillar"><h3>Coverings</h3><p>Precision rubber and elastomeric coverings that restore roller life.</p></li>
+        <li class="pillar"><h3>Coatings</h3><p>Thermal spray and polymer coatings that rebuild surfaces and extend part life.</p></li>
+        <li class="pillar"><h3>Core Fabrication</h3><p>Reverse-engineered replacements and new cores built to spec.</p></li>
+        <li class="pillar pillar--new"><h3>Tank &amp; Rubber Lining<span class="tag-new">New</span></h3><p>Shop and field lining for tanks, vessels, and trailers — by Duratech Systems.</p></li>
+      </ul>
+      <div class="pillar-ticker" aria-hidden="true"><div class="pt-slot"></div><div class="pt-dots"></div></div>
+    </div>
+  </section>
+
+  <!-- ============ VIEW 2 · PRODUCTS & SERVICES ============ -->
+  <section class="view view--products" id="view-products" data-view="products" data-index="1" aria-labelledby="products-title">
+    <header class="view-head">
+      <p class="eyebrow" data-stagger><svg class="emblem" aria-hidden="true"><use href="#emblem"/></svg>Products &amp; Services<span class="view-index">02&nbsp;/&nbsp;07</span></p>
+      <h2 id="products-title" data-stagger>Eight lines. One source.</h2>
+      <p class="view-sub" data-stagger>Coverings, coatings, cores, and the repair network behind them — engineered and manufactured in-house.</p>
+    </header>
+
+    <div class="tabs tabs--products" data-tabs>
+      <div class="tablist tablist--side" role="tablist" aria-label="Product and service categories">
+        <button role="tab" id="ptab-coverings" aria-controls="ppanel-coverings" data-stagger><span class="label-long">Roller Coverings</span><span class="label-short">Coverings</span></button>
+        <button role="tab" id="ptab-coatings" aria-controls="ppanel-coatings" data-stagger><span class="label-long">Industrial Coatings</span><span class="label-short">Coatings</span></button>
+        <button role="tab" id="ptab-heat" aria-controls="ppanel-heat" data-stagger><span class="label-long">Heat Transfer &amp; Chill Rollers</span><span class="label-short">Heat &amp; Chill</span></button>
+        <button role="tab" id="ptab-idler" aria-controls="ppanel-idler" data-stagger><span class="label-long">Idler Rollers</span><span class="label-short">Idlers</span></button>
+        <button role="tab" id="ptab-specialty" aria-controls="ppanel-specialty" data-stagger><span class="label-long">Specialty Rollers</span><span class="label-short">Specialty</span></button>
+        <button role="tab" id="ptab-repair" aria-controls="ppanel-repair" data-stagger><span class="label-long">Roller Repair &amp; Testing</span><span class="label-short">Repair &amp; Test</span></button>
+        <button role="tab" id="ptab-core" aria-controls="ppanel-core" data-stagger><span class="label-long">Core Fabrication &amp; Design</span><span class="label-short">Core Fab</span></button>
+        <button role="tab" id="ptab-lining" aria-controls="ppanel-lining" data-stagger><span class="label-long">Tank &amp; Rubber Lining</span><span class="label-short">Tank Lining</span><span class="tag-new">New</span></button>
+      </div>
+
+      <div class="tabpanels">
+        <div class="tabpanel" id="ppanel-coverings" role="tabpanel" aria-labelledby="ptab-coverings" tabindex="0">
+          <div class="panel-body">
+            <h3>Roller Coverings</h3>
+            <p>Ceramic, hard, plasma, rubber, and urethane coated rollers — every covering manufactured in-house, from standard compounds to specialty Arcomax formulations.</p>
+            <ul class="chips"><li>Ceramic</li><li>Hard</li><li>Plasma</li><li>Rubber</li><li>Urethane</li><li>Arcomax compounds</li></ul>
+          </div>
+          <svg class="panel-spot" aria-hidden="true"><use href="#i-roller"/></svg>
+          <a class="panel-cta" href="#/quote?type=new-roller">Request a quote for this<span class="arrow">→</span></a>
+        </div>
+        <div class="tabpanel" id="ppanel-coatings" role="tabpanel" aria-labelledby="ptab-coatings" tabindex="0" hidden>
+          <div class="panel-body">
+            <h3>Industrial Coatings</h3>
+            <p>Surface engineering for hard-working parts — the Plasma Coatings dual-coating system pairs thermal-spray wear resistance, like tungsten carbide, with high-release polymers.</p>
+            <ul class="chips"><li>Applications</li><li>Coating Processes</li><li>On-Site Coatings</li><li>Platings</li><li>Surface Enhancement</li><li>Plasma Coatings</li></ul>
+          </div>
+          <svg class="panel-spot" aria-hidden="true"><use href="#i-spray"/></svg>
+          <a class="panel-cta" href="#/quote?type=industrial-coating">Request a quote for this<span class="arrow">→</span></a>
+        </div>
+        <div class="tabpanel" id="ppanel-heat" role="tabpanel" aria-labelledby="ptab-heat" tabindex="0" hidden>
+          <div class="panel-body">
+            <h3>Heat Transfer &amp; Chill Rollers</h3>
+            <p>Uniform temperature control for web and converting processes — paper, plastic sheet, and film — including patented Thermalon electric heat-transfer rolls.</p>
+            <ul class="chips"><li>Chill rolls</li><li>Web &amp; converting</li><li>Paper</li><li>Plastic sheet &amp; film</li><li>Thermalon electric</li></ul>
+          </div>
+          <svg class="panel-spot" aria-hidden="true"><use href="#i-thermo"/></svg>
+          <a class="panel-cta" href="#/quote?type=new-roller">Request a quote for this<span class="arrow">→</span></a>
+        </div>
+        <div class="tabpanel" id="ppanel-idler" role="tabpanel" aria-labelledby="ptab-idler" tabindex="0" hidden>
+          <div class="panel-body">
+            <h3>Idler Rollers</h3>
+            <p>Dead shaft, live shaft, and specialty idlers — built in carbon steel, carbon fiber, and aluminum to match the web and the duty cycle.</p>
+            <ul class="chips"><li>Dead shaft</li><li>Live shaft</li><li>Specialty</li><li>Carbon steel</li><li>Carbon fiber</li><li>Aluminum</li></ul>
+          </div>
+          <svg class="panel-spot" aria-hidden="true"><use href="#i-idler"/></svg>
+          <a class="panel-cta" href="#/quote?type=new-roller">Request a quote for this<span class="arrow">→</span></a>
+        </div>
+        <div class="tabpanel" id="ppanel-specialty" role="tabpanel" aria-labelledby="ptab-specialty" tabindex="0" hidden>
+          <div class="panel-body">
+            <h3>Specialty Rollers</h3>
+            <p>Application-specific rolls engineered for the job — Arcostretcher grooved spreader rolls that fight wrinkles, and Pegasus dual-layer compression rolls.</p>
+            <ul class="chips"><li>Application-specific</li><li>Arcostretcher spreader</li><li>Pegasus compression</li></ul>
+          </div>
+          <svg class="panel-spot" aria-hidden="true"><use href="#i-spreader"/></svg>
+          <a class="panel-cta" href="#/quote?type=new-roller">Request a quote for this<span class="arrow">→</span></a>
+        </div>
+        <div class="tabpanel" id="ppanel-repair" role="tabpanel" aria-labelledby="ptab-repair" tabindex="0" hidden>
+          <div class="panel-body">
+            <h3>Roller Repair &amp; Testing</h3>
+            <p>The largest, most diverse repair network in the industry — grooving and finishing, journal, shaft, and core body repair, roller services, and testing.</p>
+            <ul class="chips"><li>Grooving &amp; finishing</li><li>Journal &amp; shaft repair</li><li>Core body repair</li><li>Roller services</li><li>Testing</li></ul>
+          </div>
+          <svg class="panel-spot" aria-hidden="true"><use href="#i-wrench"/></svg>
+          <a class="panel-cta" href="#/quote?type=roller-repair">Request a quote for this<span class="arrow">→</span></a>
+        </div>
+        <div class="tabpanel" id="ppanel-core" role="tabpanel" aria-labelledby="ptab-core" tabindex="0" hidden>
+          <div class="panel-body">
+            <h3>Core Fabrication &amp; Design</h3>
+            <p>In-house engineering from CAD and 3D modeling through cladding and welding — reverse-engineered replacements and new cores built to spec.</p>
+            <ul class="chips"><li>In-house engineering</li><li>CAD / 3D modeling</li><li>Cladding &amp; welding</li><li>Reverse engineering</li></ul>
+          </div>
+          <svg class="panel-spot" aria-hidden="true"><use href="#i-blueprint"/></svg>
+          <a class="panel-cta" href="#/quote?type=send-drawing">Request a quote for this<span class="arrow">→</span></a>
+        </div>
+        <div class="tabpanel" id="ppanel-lining" role="tabpanel" aria-labelledby="ptab-lining" tabindex="0" hidden>
+          <div class="panel-body">
+            <h3>Tank &amp; Rubber Lining<span class="tag-new">New</span></h3>
+            <p>New to American Roller — tank and rubber lining by Duratech Systems of Redford, Michigan: shop and field lining for tanks, vessels, trailers, and pipe.</p>
+            <ul class="chips"><li>Rubber linings</li><li>FRP &amp; PVC</li><li>Field crews</li><li>Turn-key reline</li></ul>
+            <a class="panel-link" href="#/lining" data-view-link="lining">Explore Tank &amp; Rubber Lining<span class="arrow">→</span></a>
+          </div>
+          <svg class="panel-spot" aria-hidden="true"><use href="#i-tank"/></svg>
+          <a class="panel-cta" href="#/quote?type=tank-lining">Request a lining quote<span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VIEW 3 · TANK & RUBBER LINING ============ -->
+  <section class="view view--lining" id="view-lining" data-view="lining" data-index="2" aria-labelledby="lining-title">
+    <header class="view-head">
+      <p class="eyebrow eyebrow--red" data-stagger><svg class="emblem" aria-hidden="true"><use href="#emblem"/></svg>New to American Roller<span class="view-index">03&nbsp;/&nbsp;07</span></p>
+      <h2 id="lining-title" data-stagger>Tank &amp; Rubber Lining</h2>
+      <p class="view-sub" data-stagger><span class="label-long">Delivered by <strong>Duratech Systems — Redford, Michigan, now part of American Roller</strong> — a leading U.S. rubber-lining applicator for over four decades. Direct line: <a href="tel:+13139373300" class="tel">313.937.3300</a></span><span class="label-short">By <strong>Duratech Systems — Redford, MI, now part of American Roller</strong>. Four decades of U.S. rubber lining. <a href="tel:+13139373300" class="tel">313.937.3300</a></span></p>
+    </header>
+
+    <div class="lining-grid">
+      <div class="lining-visual" data-stagger>
+        <button class="signature signature--tank" type="button" aria-pressed="false" aria-label="Lined tank wall cutaway — press to peel the layers apart">
+          <svg class="tank-svg" viewBox="0 0 560 470" role="img" aria-label="Cutaway of a rubber-lined storage tank: steel shell, blasted profile, rubber lining">
+            <ellipse cx="250" cy="446" rx="190" ry="12" fill="#0d0f11"/>
+            <g class="tx-shell">
+              <rect x="110" y="86" width="280" height="318" fill="url(#gradSteelH)"/>
+              <ellipse cx="250" cy="404" rx="140" ry="26" fill="#2c3137"/>
+              <ellipse cx="250" cy="86" rx="140" ry="26" fill="#3f454c"/>
+              <ellipse cx="250" cy="86" rx="124" ry="20" fill="#565e66"/>
+              <path d="M110 190h280M110 300h140" stroke="#1d2125" stroke-width="1.6"/>
+              <g class="tx-manway">
+                <circle cx="168" cy="252" r="22" fill="#3a4046" stroke="#22262a" stroke-width="3"/>
+                <circle cx="168" cy="252" r="13" fill="#565e66"/>
+                <path d="M168 226v8M168 270v8M142 252h8M186 252h8M150 234l6 6M186 270l-6-6M186 234l-6 6M150 270l6-6" stroke="#22262a" stroke-width="2.4"/>
+              </g>
+              <g class="tx-nozzles">
+                <rect x="180" y="52" width="18" height="24" fill="#4a5158"/><rect x="174" y="46" width="30" height="8" rx="2" fill="#5a626b"/>
+                <rect x="296" y="56" width="14" height="20" fill="#4a5158"/><rect x="291" y="50" width="24" height="7" rx="2" fill="#5a626b"/>
+              </g>
+            </g>
+            <g class="tx-window">
+              <path d="M262 190 Q326 201 388 192 L388 400 Q326 411 262 402 Z" fill="#101216"/>
+              <path d="M262 190 Q326 201 388 192" fill="none" stroke="#0a0c0e" stroke-width="2.5"/>
+              <path d="M262 402 Q326 411 388 400" fill="none" stroke="#0a0c0e" stroke-width="2.5"/>
+              <path d="M381 193v207" stroke="#23262b" stroke-width="9"/>
+              <path d="M386.5 192v208" stroke="#5a626b" stroke-width="2"/>
+              <path class="tx-liquid" d="M276 312h96" stroke="#8a929b" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <path d="M372 330q-44 16-88 6" fill="none" stroke="#22262a" stroke-width="1.4"/>
+            </g>
+            <g class="tx-wall" aria-hidden="true">
+              <rect class="tx-l-shell"  x="234" y="196" width="12" height="208" fill="#9aa1a8"/>
+              <rect class="tx-l-blast"  x="246" y="196" width="9"  height="208" fill="url(#patBlast)"/>
+              <rect class="tx-l-lining" x="255" y="196" width="14" height="208" fill="#23262b"/>
+              <rect class="tx-l-datum"  x="267" y="196" width="2.5" height="208" fill="var(--red, #C8102E)"/>
+            </g>
+            <g class="tx-callouts" aria-hidden="true">
+              <g class="callout co-1"><path d="M240 220 L240 150 L186 150" fill="none"/><text x="182" y="142" text-anchor="end" data-flip-anchor>STEEL SHELL</text></g>
+              <g class="callout co-2"><path d="M250 370 L250 432 L196 432" fill="none"/><text x="192" y="424" text-anchor="end">BLASTED PROFILE</text></g>
+              <g class="callout co-3"><path d="M262 286 L304 250 L344 250" fill="none"/><text x="304" y="242" text-anchor="start">RUBBER LINING</text></g>
+            </g>
+            <g class="tx-dim" aria-hidden="true">
+              <path d="M428 86v318M422 86h12M422 404h12" fill="none"/>
+              <text x="446" y="250" text-anchor="middle" transform="rotate(90 446 250)">UP TO MILLION-GALLON SCALE</text>
+            </g>
+          </svg>
+          <span class="signature-hint" aria-hidden="true">Shell · Profile · Lining — <span class="hint-tap">tap</span><span class="hint-click">click</span> to peel</span>
+        </button>
+      </div>
+
+      <div class="lining-content">
+        <div class="tabs tabs--lining" data-tabs>
+          <div class="tablist tablist--seg" role="tablist" aria-label="Tank and rubber lining details">
+            <button role="tab" id="ltab-systems"   aria-controls="lpanel-systems" data-stagger><span class="label-long">Lining Systems</span><span class="label-short">Systems</span></button>
+            <button role="tab" id="ltab-what"      aria-controls="lpanel-what" data-stagger><span class="label-long">What We Line</span><span class="label-short">What We Line</span></button>
+            <button role="tab" id="ltab-contact"   aria-controls="lpanel-contact" data-stagger><span class="label-long">Industries &amp; Contact</span><span class="label-short">Contact</span></button>
+          </div>
+
+          <div class="tabpanels">
+            <div class="tabpanel" id="lpanel-systems" role="tabpanel" aria-labelledby="ltab-systems" tabindex="0">
+              <ul class="spec-list" data-pager data-per-page="11" data-per-page-mobile="5">
+                <li><strong>Natural gum rubber</strong><span>HCl storage</span></li>
+                <li><strong>Semi-hard natural rubber</strong><span>Water treatment · plating solutions</span></li>
+                <li><strong>Bone-hard / ebonite rubber</strong><span>Chemical processing</span></li>
+                <li><strong>Neoprene</strong><span>Synthetic compound</span></li>
+                <li><strong>Chlorobutyl</strong><span>Synthetic compound</span></li>
+                <li><strong>Bromobutyl</strong><span>Synthetic compound</span></li>
+                <li><strong>Nitrile</strong><span>Synthetic compound</span></li>
+                <li><strong>PVC linings</strong><span>Chemical service</span></li>
+                <li><strong>Fiberglass (FRP) linings</strong><span>Strip &amp; reline or new</span></li>
+                <li><strong>Spray-applied coatings</strong><span>Industrial grade</span></li>
+                <li><strong>Acid-resistant brick</strong><span>Severe service</span></li>
+              </ul>
+              <p class="panel-foot">Related shop services: industrial floor coatings · sandblasting &amp; surface preparation · polypropylene repair</p>
+            </div>
+
+            <div class="tabpanel" id="lpanel-what" role="tabpanel" aria-labelledby="ltab-what" tabindex="0" hidden>
+              <ul class="spec-list spec-list--what" data-pager data-per-page="6" data-per-page-mobile="4">
+                <li><strong>API 650 storage tanks</strong><span>Up to million-gallon scale</span></li>
+                <li><strong>Pressure vessels</strong><span>Shop or field</span></li>
+                <li><strong>Tanker trailers</strong><span>Repair or full strip-and-reline · rubber &amp; FRP</span></li>
+                <li><strong>Pipe interiors &amp; spools</strong><span>Lined end to end</span></li>
+                <li><strong>Mixers, agitators &amp; intricate components</strong><span>Complex geometry welcome</span></li>
+                <li><strong>In-shop or on-site</strong><span>Ship by truck or rail — or field crews scheduled around your outage window</span></li>
+              </ul>
+              <p class="panel-foot panel-foot--proc">TURN-KEY&nbsp;: OLD-LINING REMOVAL <span class="arrow">→</span> ABRASIVE BLASTING <span class="arrow">→</span> RELINING</p>
+            </div>
+
+            <div class="tabpanel" id="lpanel-contact" role="tabpanel" aria-labelledby="ltab-contact" tabindex="0" hidden>
+              <ul class="chips chips--industries">
+                <li>Chemical processing</li><li>Water &amp; wastewater</li><li>Power</li><li>Steel</li><li>Food</li><li>Waste handling</li><li>Tanker fleets</li>
+              </ul>
+              <address class="contact-card">
+                <strong>Duratech Systems</strong>
+                <span>12546 Beech Daly Rd, Redford, MI 48239</span>
+                <a class="tel" href="tel:+13139373300">313.937.3300</a>
+              </address>
+              <a class="panel-cta panel-cta--solid" href="#/quote?type=tank-lining">Request a lining quote<span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VIEW 4 · INDUSTRIES ============ -->
+  <section class="view view--industries" id="view-industries" data-view="industries" data-index="3" aria-labelledby="industries-title">
+    <header class="view-head">
+      <p class="eyebrow" data-stagger><svg class="emblem" aria-hidden="true"><use href="#emblem"/></svg>Industries<span class="view-index">04&nbsp;/&nbsp;07</span></p>
+      <h2 id="industries-title" data-stagger>14 industries. One partner.</h2>
+      <p class="view-sub" data-stagger>Select yours for the short version — and a fast path to a quote.</p>
+    </header>
+
+    <div class="ind-wrap">
+      <div class="ind-grid" data-ind-grid data-swipe-scope data-pager data-per-page="14" data-per-page-mobile="6" data-pager-target="[data-ind-pager]">
+        <button class="tile" type="button" data-industry="Battery &amp; Power Storage" data-blurb="Corrosion-resistant coatings and static-dissipating rubber." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-battery"/></svg><span class="tile-name">Battery &amp; Power Storage</span><span class="tile-blurb">Corrosion-resistant coatings and static-dissipating rubber.</span></button>
+        <button class="tile" type="button" data-industry="Carbon Fiber &amp; Non-woven" data-blurb="Ceramic transport-roll coatings for traction and wear — including coatings on carbon-fiber substrates." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-weave"/></svg><span class="tile-name">Carbon Fiber &amp; Non-woven</span><span class="tile-blurb">Ceramic transport-roll coatings for traction and wear.</span></button>
+        <button class="tile" type="button" data-industry="Flexible Packaging" data-blurb="Release-optimized coatings and coverings." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-pouch"/></svg><span class="tile-name">Flexible Packaging</span><span class="tile-blurb">Release-optimized coatings and coverings.</span></button>
+        <button class="tile" type="button" data-industry="Food &amp; Beverage" data-blurb="FDA/USDA-compliant plasma coatings for food contact." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-bottle"/></svg><span class="tile-name">Food &amp; Beverage</span><span class="tile-blurb">FDA/USDA-compliant plasma coatings for food contact.</span></button>
+        <button class="tile" type="button" data-industry="Glass" data-blurb="Custom cores, coverings, and coatings." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-glass"/></svg><span class="tile-name">Glass</span><span class="tile-blurb">Custom cores, coverings, and coatings.</span></button>
+        <button class="tile" type="button" data-industry="Medical Products" data-blurb="FDA/USP-compliant plasma coatings." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-medical"/></svg><span class="tile-name">Medical Products</span><span class="tile-blurb">FDA/USP-compliant plasma coatings.</span></button>
+        <button class="tile" type="button" data-industry="Plastic Film &amp; Sheet" data-blurb="Cast and blown film rollers up to 10 m wide." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-film"/></svg><span class="tile-name">Plastic Film &amp; Sheet</span><span class="tile-blurb">Cast and blown film rollers up to 10 m wide.</span></button>
+        <button class="tile" type="button" data-industry="Printing &amp; Digital Printing" data-blurb="Parts that run longer and faster." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-press"/></svg><span class="tile-name">Printing &amp; Digital Printing</span><span class="tile-blurb">Parts that run longer and faster.</span></button>
+        <button class="tile" type="button" data-industry="Pulp &amp; Paper" data-blurb="Wear-resistant surfaces that cut defects." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-paperroll"/></svg><span class="tile-name">Pulp &amp; Paper</span><span class="tile-blurb">Wear-resistant surfaces that cut defects.</span></button>
+        <button class="tile" type="button" data-industry="Steel &amp; Aluminum" data-blurb="High-performance coverings for coil lines and bridle rolls — 50+ years in the mill." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-beam"/></svg><span class="tile-name">Steel &amp; Aluminum</span><span class="tile-blurb">Coverings for coil lines and bridle rolls — 50+ years.</span></button>
+        <button class="tile" type="button" data-industry="Tape &amp; Label" data-blurb="Exceptional adhesive release." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-tape"/></svg><span class="tile-name">Tape &amp; Label</span><span class="tile-blurb">Exceptional adhesive release.</span></button>
+        <button class="tile" type="button" data-industry="Tire &amp; Rubber" data-blurb="Release coatings for rubber processing." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-tire"/></svg><span class="tile-name">Tire &amp; Rubber</span><span class="tile-blurb">Release coatings for rubber processing.</span></button>
+        <button class="tile" type="button" data-industry="Tissue, Towel &amp; Sanitary" data-blurb="Wear resistance for speed and sheet bulk." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-tissue"/></svg><span class="tile-name">Tissue, Towel &amp; Sanitary</span><span class="tile-blurb">Wear resistance for speed and sheet bulk.</span></button>
+        <button class="tile" type="button" data-industry="Wood" data-blurb="The FinishRite line for flooring and construction." data-stagger><svg class="tile-icon" aria-hidden="true"><use href="#i-wood"/></svg><span class="tile-name">Wood</span><span class="tile-blurb">The FinishRite line for flooring and construction.</span></button>
+      </div>
+
+      <div class="ind-pager" data-ind-pager></div>
+
+      <div class="ind-detail" data-ind-detail hidden>
+        <div class="detail-card" role="dialog" aria-modal="false" aria-labelledby="ind-detail-title">
+          <svg class="detail-icon" aria-hidden="true"><use href="#i-battery"/></svg>
+          <h3 id="ind-detail-title">Industry</h3>
+          <p class="detail-blurb"></p>
+          <a class="panel-cta" data-ind-quote href="#/quote">Get a quote<span class="arrow">→</span></a>
+          <button class="detail-close" type="button" aria-label="Close industry detail">×</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VIEW 5 · THE AMERICAN ROLLER WAY ============ -->
+  <section class="view view--way" id="view-way" data-view="way" data-index="4" aria-labelledby="way-title">
+    <header class="view-head">
+      <p class="eyebrow" data-stagger><svg class="emblem" aria-hidden="true"><use href="#emblem"/></svg>The American Roller Way<span class="view-index">05&nbsp;/&nbsp;07</span></p>
+      <h2 id="way-title" data-stagger>How we run the shop.</h2>
+      <p class="view-sub" data-stagger>Our operating philosophy, in four disciplines.</p>
+    </header>
+
+    <div class="way-grid" data-way>
+      <article class="quad" data-stagger>
+        <span class="quad-num" aria-hidden="true">01</span>
+        <h3>Sales &amp; Customer Experience</h3>
+        <p>Dedicated customer teams with national coverage — one point of contact from first call to delivery.</p>
+      </article>
+      <article class="quad" data-stagger>
+        <span class="quad-num" aria-hidden="true">02</span>
+        <h3>Technical Expertise</h3>
+        <p>Engineers on the job from spec to finish. Laser profile measurement to .0001″. On-site coating crews recoat oversized parts — winder and reel drums — without removal from your machinery.</p>
+      </article>
+      <article class="quad" data-stagger>
+        <span class="quad-num" aria-hidden="true">03</span>
+        <h3>Operational Excellence</h3>
+        <p>A lean culture run on daily tier meetings — safety is priority #1, and performance is tracked on on-time delivery and days-in-plant.</p>
+      </article>
+      <article class="quad" data-stagger>
+        <span class="quad-num" aria-hidden="true">04</span>
+        <h3>Innovation</h3>
+        <p>On-site coatings, reverse engineering, expanded finishing options, and journal, shaft, and core repair — capability that keeps widening.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ VIEW 6 · LOCATIONS ============ -->
+  <section class="view view--locations" id="view-locations" data-view="locations" data-index="5" aria-labelledby="locations-title">
+    <header class="view-head">
+      <p class="eyebrow" data-stagger><svg class="emblem" aria-hidden="true"><use href="#emblem"/></svg>Locations<span class="view-index">06&nbsp;/&nbsp;07</span></p>
+      <h2 id="locations-title" data-stagger>Close to your plant.</h2>
+      <p class="view-sub" data-stagger>15+ facilities across the U.S., Canada, and China — plus 8 licensee partners worldwide.</p>
+    </header>
+
+    <div class="loc-grid">
+      <figure class="loc-map" data-stagger>
+        <svg class="map-svg" viewBox="0 0 560 400" role="img" aria-label="Stylized map of North America showing American Roller facilities">
+          <rect x="0" y="0" width="560" height="400" fill="url(#patGrid)"/>
+          <g class="map-dots" data-map-dots></g>
+          <g class="map-pins" data-map-pins></g>
+          <text class="map-caption" x="16" y="384">N. AMERICA · FACILITY NETWORK</text>
+        </svg>
+        <div class="map-inset"><span class="pin-dot" aria-hidden="true"></span>+ Shanghai, China</div>
+      </figure>
+
+      <aside class="loc-side">
+        <ul class="loc-list" data-pager data-per-page="5" data-per-page-mobile="4" data-loc-list>
+          <li data-pin="union-grove"><strong>Union Grove, WI — Corporate HQ</strong><span>Arcon · Arcotech · Wisconsin Plant · Research &amp; Engineering Center</span></li>
+          <li data-pin="redford" class="loc--new"><strong>Duratech Systems — Redford, MI<span class="tag-new">Newest</span></strong><span>Tank &amp; rubber lining</span></li>
+          <li data-pin="chicago"><strong>Chicago, IL</strong></li>
+          <li data-pin="riverdale"><strong>Bonell — Riverdale, IL</strong></li>
+          <li data-pin="oshkosh"><strong>C.R.E.W. — Oshkosh, WI</strong></li>
+          <li data-pin="walkerton"><strong>Walkerton, IN</strong></li>
+          <li data-pin="arlington"><strong>Arlington, TN</strong></li>
+          <li data-pin="paris"><strong>Big River — Paris, AR</strong></li>
+          <li data-pin="rock-hill"><strong>Rock Hill, SC</strong></li>
+          <li data-pin="covington"><strong>Covington, VA</strong></li>
+          <li data-pin="waterbury"><strong>Plasma Coatings — Waterbury, CT</strong></li>
+          <li data-pin="mississauga"><strong>Mississauga, ON, Canada</strong></li>
+          <li data-pin="shanghai"><strong>Shanghai, China</strong></li>
+        </ul>
+        <p class="licensee-note" data-stagger>Licensee partners in Argentina, Australia, Canada, India, Italy, Japan, New Zealand, and South Africa.</p>
+        <div class="find-rep" data-stagger>
+          <label class="visually-hidden" for="rep-country">Country</label>
+          <select id="rep-country" data-rep>
+            <option value="" selected>Country…</option>
+            <option>United States</option><option>Canada</option><option>China</option>
+            <option>Argentina</option><option>Australia</option><option>India</option><option>Italy</option>
+            <option>Japan</option><option>New Zealand</option><option>South Africa</option>
+          </select>
+          <label class="visually-hidden" for="rep-state">State</label>
+          <select id="rep-state" data-rep>
+            <option value="" selected>State…</option>
+            <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+          </select>
+          <p class="rep-note" data-rep-note role="status">Find a rep — call <a class="tel" href="tel:+12628788665">262.878.8665</a></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ VIEW 7 · REQUEST A QUOTE ============ -->
+  <section class="view view--quote" id="view-quote" data-view="quote" data-index="6" aria-labelledby="quote-title">
+    <header class="view-head">
+      <p class="eyebrow eyebrow--red" data-stagger><svg class="emblem" aria-hidden="true"><use href="#emblem"/></svg>Request a Quote<span class="view-index">07&nbsp;/&nbsp;07</span></p>
+      <h2 id="quote-title" data-stagger>Start your quote.</h2>
+      <p class="view-sub view-sub--desk" data-stagger>Straight to our engineers — the part, the problem, or the print.</p>
+    </header>
+
+    <div class="quote-grid">
+      <form class="quote-form" data-quote-form novalidate data-step="1">
+        <fieldset class="type-selector" data-stagger>
+          <legend class="visually-hidden">Quote type</legend>
+          <label class="type-card"><input type="radio" name="rfq-type" value="new-roller" checked><svg aria-hidden="true"><use href="#i-roller"/></svg><span><span class="label-long">New Roller</span><span class="label-short">New Roller</span></span></label>
+          <label class="type-card"><input type="radio" name="rfq-type" value="roller-repair"><svg aria-hidden="true"><use href="#i-wrench"/></svg><span><span class="label-long">Roller Repair</span><span class="label-short">Repair</span></span></label>
+          <label class="type-card"><input type="radio" name="rfq-type" value="industrial-coating"><svg aria-hidden="true"><use href="#i-spray"/></svg><span><span class="label-long">Industrial Coating</span><span class="label-short">Coating</span></span></label>
+          <label class="type-card"><input type="radio" name="rfq-type" value="tank-lining"><svg aria-hidden="true"><use href="#i-tank"/></svg><span><span class="label-long">Tank &amp; Rubber Lining</span><span class="label-short">Tank Lining</span></span></label>
+          <label class="type-card"><input type="radio" name="rfq-type" value="send-drawing"><svg aria-hidden="true"><use href="#i-drawing"/></svg><span><span class="label-long">Send a Drawing</span><span class="label-short">Drawing</span></span></label>
+        </fieldset>
+
+        <div class="form-fields">
+          <div class="f-step f-step1">
+            <p class="step-label" aria-hidden="true">Step 1 of 2 — Who to call back</p>
+            <div class="field"><label for="q-name">Name *</label><input id="q-name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="q-company">Company</label><input id="q-company" name="company" type="text" autocomplete="organization"></div>
+            <div class="field"><label for="q-email">Email *</label><input id="q-email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="q-phone">Phone</label><input id="q-phone" name="phone" type="tel" autocomplete="tel"></div>
+          </div>
+          <div class="f-step f-step2">
+            <p class="step-label" aria-hidden="true">Step 2 of 2 — The work</p>
+            <div class="field"><label for="q-state">State</label>
+              <select id="q-state" name="state">
+                <option value="" selected>Select…</option>
+                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option><option>Outside U.S.</option>
+              </select>
+            </div>
+            <div class="field"><label for="q-industry">Industry</label>
+              <select id="q-industry" name="industry">
+                <option value="" selected>Select…</option>
+                <option>Battery &amp; Power Storage</option><option>Carbon Fiber &amp; Non-woven</option><option>Flexible Packaging</option><option>Food &amp; Beverage</option><option>Glass</option><option>Medical Products</option><option>Plastic Film &amp; Sheet</option><option>Printing &amp; Digital Printing</option><option>Pulp &amp; Paper</option><option>Steel &amp; Aluminum</option><option>Tape &amp; Label</option><option>Tire &amp; Rubber</option><option>Tissue, Towel &amp; Sanitary</option><option>Wood</option><option>Other</option>
+              </select>
+            </div>
+            <div class="field field--wide"><label for="q-details">Project details</label><textarea id="q-details" name="details" rows="3" placeholder="Part, dimensions, service conditions, timeline…"></textarea></div>
+            <div class="dropzone field--wide" data-dropzone tabindex="0" role="button" aria-label="Attach drawings or photos">
+              <svg aria-hidden="true"><use href="#i-drawing"/></svg>
+              <span class="dz-text">Drag &amp; drop drawings or photos — or <span class="dz-browse">browse</span></span>
+              <span class="dz-files" data-dz-files></span>
+              <input type="file" multiple hidden data-dz-input>
+            </div>
+          </div>
+        </div>
+
+        <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+
+        <div class="form-actions">
+          <button class="btn-step btn-back" type="button" data-step-back hidden>← Back</button>
+          <button class="btn-step btn-next" type="button" data-step-next>Next →</button>
+          <button class="btn-submit" type="submit" data-magnetic>Submit request</button>
+        </div>
+      </form>
+
+      <aside class="quote-aside">
+        <div class="aside-card" data-stagger>
+          <strong>American Roller Company</strong>
+          <span>1440 13th Avenue<br>Union Grove, WI 53182</span>
+          <a class="tel" href="tel:+12628788665">262.878.8665</a>
+        </div>
+        <div class="aside-card aside-card--red" data-stagger>
+          <strong>Tank &amp; lining work?</strong>
+          <span>Duratech Systems · Redford, MI</span>
+          <a class="tel" href="tel:+13139373300">313.937.3300</a>
+        </div>
+        <a class="aside-link" href="#" data-stub data-stagger>Open Order Portal<span class="arrow">↗</span></a>
+      </aside>
+
+      <div class="quote-success" data-quote-success hidden>
+        <svg class="success-check" aria-hidden="true"><use href="#i-check"/></svg>
+        <h3>Request received.</h3>
+        <p class="success-meta" data-success-meta></p>
+        <p>Our team will follow up shortly. Need it faster? Call <a class="tel" href="tel:+12628788665">262.878.8665</a> — or for lining work, Duratech direct at <a class="tel" href="tel:+13139373300">313.937.3300</a>.</p>
+        <button class="btn-step" type="button" data-quote-reset>Submit another request</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dot rail -->
+  <nav class="dot-rail" aria-label="Views">
+    <button type="button" data-go="home" aria-label="Home" aria-current="true"></button>
+    <button type="button" data-go="products" aria-label="Products &amp; Services"></button>
+    <button type="button" data-go="lining" aria-label="Tank &amp; Rubber Lining"></button>
+    <button type="button" data-go="industries" aria-label="Industries"></button>
+    <button type="button" data-go="way" aria-label="The American Roller Way"></button>
+    <button type="button" data-go="locations" aria-label="Locations"></button>
+    <button type="button" data-go="quote" aria-label="Request a Quote"></button>
+  </nav>
+</main>
+
+<!-- ======================= UTILITY RAIL ======================= -->
+<footer class="utility-rail" role="contentinfo">
+  <a class="tel util-tel" href="tel:+12628788665">262.878.8665</a>
+  <span class="util-note">HQ Union Grove, WI · 15+ facilities · U.S. · Canada · China</span>
+  <span class="util-links">
+    <a href="#" data-stub>Open Order Portal</a>
+    <a href="#" data-stub>Privacy Policy</a>
+    <span class="util-pop-wrap">
+      <button class="util-pop-btn" type="button" aria-expanded="false" aria-controls="res-pop">Resources</button>
+      <span class="util-pop" id="res-pop" hidden>
+        <a href="#" data-stub>FAQs</a><a href="#" data-stub>White Papers</a><a href="#" data-stub>Case Studies</a>
+      </span>
+    </span>
+  </span>
+  <span class="util-social">
+    <a href="#" data-stub aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h2.5V5H14a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h2.4l.6-3H13V9a1 1 0 0 1 1-1z" fill="currentColor"/></svg></a>
+    <a href="#" data-stub aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9H4v11h2.5zM5.2 7.7a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2zM20 13.4c0-2.9-1.6-4.6-4-4.6a3.4 3.4 0 0 0-3 1.6V9h-2.5v11H13v-5.8c0-1.5.8-2.4 2-2.4s2 .8 2 2.4V20h3z" fill="currentColor"/></svg></a>
+  </span>
+  <span class="util-copy">© American Roller Company 2026</span>
+  <span class="util-more-wrap">
+    <button class="util-pop-btn util-more-btn" type="button" aria-expanded="false" aria-controls="more-pop">More</button>
+    <span class="util-pop util-pop--up" id="more-pop" hidden>
+      <a href="#" data-stub>Open Order Portal</a><a href="#" data-stub>Privacy Policy</a>
+      <a href="#" data-stub>FAQs</a><a href="#" data-stub>White Papers</a><a href="#" data-stub>Case Studies</a>
+      <span class="util-copy--pop">© American Roller Company 2026</span>
+    </span>
+  </span>
+</footer>
+
+</body>
+</html>

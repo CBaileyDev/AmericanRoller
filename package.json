@@ -1,0 +1,14 @@
+{
+  "name": "american-roller-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "American Roller Company — viewport-locked, zero-scroll marketing site",
+  "scripts": {
+    "dev": "npx http-server -p 4173 -c-1 .",
+    "test": "playwright test",
+    "test:noscroll": "playwright test tests/e2e/no-scroll.spec.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
+}

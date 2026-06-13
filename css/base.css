@@ -1,0 +1,322 @@
+/* ============================================================
+   BASE — reset, fonts, the scroll-lockdown kit, shell chrome.
+   Iron rules: no overflow:auto|scroll anywhere · no 100vw ·
+   no animated height/margin · decorative bleed lives inside
+   an overflow:clip host. Native <select> popups are the only
+   OS-rendered "scrolling" UI permitted.
+   ============================================================ */
+
+/* Metric-matched fallbacks: pre-swap layout ≈ post-swap (zero-scroll requirement) */
+@font-face { font-family: "Archivo Fallback"; src: local("Arial"); size-adjust: 99%; }
+@font-face { font-family: "Inter Fallback"; src: local("Arial"); size-adjust: 107%; }
+@font-face { font-family: "Plex Mono Fallback"; src: local("Courier New"); size-adjust: 96%; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* [hidden] must beat any display rule we set on the same element,
+   and paged-out items must leave the layout entirely. */
+[hidden] { display: none !important; }
+[data-page-hidden] { display: none !important; }
+
+html, body {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  overflow: clip;            /* immune to programmatic scrolling */
+  overscroll-behavior: none;
+}
+
+body {
+  display: grid;
+  grid-template-rows: var(--header-h) 1fr var(--util-h);
+  background: var(--g-900);
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+.svg-defs { position: absolute; width: 0; height: 0; }
+
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; }
+p { overflow-wrap: anywhere; }
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; touch-action: manipulation; }
+ul, ol { list-style: none; }
+strong { font-weight: 600; }
+address { font-style: normal; }
+textarea { resize: none; }
+input, select, textarea { font-size: 16px; /* prevents iOS focus auto-zoom */ font-family: var(--font-body); }
+svg { display: block; }
+
+:focus-visible { outline: 2px solid var(--paper); outline-offset: 2px; border-radius: 2px; }
+.edge-tight :focus-visible, .dot-rail :focus-visible { outline-offset: -2px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  clip-path: inset(50%); overflow: clip; white-space: nowrap;
+}
+
+.label-short { display: none; }
+
+/* pointer-aware verb in signature hints */
+.hint-click { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .hint-tap { display: none; }
+  .hint-click { display: inline; }
+}
+@media (max-width: 768px) {
+  .label-long { display: none; }
+  .label-short { display: inline; }
+}
+
+/* ---------------- mono / spec motifs ---------------- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--steel);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.eyebrow--red { color: var(--red-hot); }
+.emblem { width: 15px; height: 15px; flex: none; color: var(--emblem-accent); }
+.view-index { margin-left: auto; color: var(--steel-dim); letter-spacing: 0.1em; }
+
+.tag-new {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: #fff;
+  background: var(--red);
+  border-radius: 3px;
+  padding: 1px 5px 0;
+  margin-left: 8px;
+  vertical-align: 2px;
+  text-transform: uppercase;
+}
+
+.arrow { display: inline-block; margin-left: 0.45em; transition: transform var(--dur-ui) var(--ease); }
+a:hover .arrow, button:hover .arrow { transform: translateX(4px); }
+
+.tel { font-family: var(--font-mono); color: var(--paper); border-bottom: 1px solid var(--line); }
+.tel:hover { border-color: var(--red-hot); color: #fff; }
+
+/* ================= HEADER ================= */
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 2vw, 28px);
+  padding: 0 var(--stage-pad);
+  border-bottom: 1px solid var(--line);
+  background: var(--g-950);
+  position: relative;
+  z-index: 40;
+  min-width: 0;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; flex: none; }
+.brand-mark { width: 26px; height: 26px; }
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 115%;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.main-nav { display: flex; gap: clamp(6px, 1.4vw, 20px); margin-left: auto; min-width: 0; }
+.main-nav a {
+  font-size: var(--t-small);
+  font-weight: 500;
+  color: var(--paper-dim);
+  padding: 6px 4px;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: color var(--dur-ui) ease;
+}
+.main-nav a:hover { color: var(--paper); }
+.main-nav a[aria-current="true"] { color: var(--paper); border-bottom-color: var(--red); }
+
+.btn-quote {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-small);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: var(--red);
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  white-space: nowrap;
+  transition: background var(--dur-ui) ease, transform var(--dur-ui) var(--ease);
+  will-change: transform;
+}
+.btn-quote:hover { background: var(--red-hot); }
+
+/* mobile nav popover */
+.nav-mobile { display: none; position: relative; margin-left: auto; }
+.nav-pop-btn {
+  display: flex; align-items: center; gap: 6px;
+  font-size: var(--t-small); font-weight: 600;
+  color: var(--paper);
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.nav-pop-current {
+  max-width: 110px;
+  overflow: clip;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.nav-pop {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  display: flex; flex-direction: column;
+  background: var(--g-850);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 6px;
+  min-width: 230px;
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.5);
+  z-index: 60;
+}
+.nav-pop a { padding: 9px 12px; font-size: var(--t-small); border-radius: 4px; color: var(--paper-dim); }
+.nav-pop a:hover { background: var(--g-800); color: var(--paper); }
+.nav-pop a[aria-current="true"] { color: var(--paper); background: var(--g-800); box-shadow: inset 2px 0 0 var(--red); }
+
+/* mid-width tier: keep the 6 links on one line with short labels */
+@media (max-width: 1180px) and (min-width: 769px) {
+  .main-nav .label-long { display: none; }
+  .main-nav .label-short { display: inline; }
+}
+
+@media (max-width: 768px) {
+  .main-nav { display: none; }
+  .nav-mobile { display: block; }
+  .site-header { padding: 0 12px; gap: 8px; }
+  .brand { gap: 8px; }
+  .brand-name { font-size: 0.74rem; }
+  .nav-pop-current { max-width: 88px; }
+  .btn-quote { padding: 8px 12px; }
+}
+
+/* ================= STAGE ================= */
+.stage {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  overflow: clip;
+  touch-action: none; /* JS owns horizontal swipe; taps unaffected */
+  background:
+    radial-gradient(1200px 500px at 78% -10%, rgb(46 53 61 / 0.55), transparent 60%),
+    var(--g-900);
+}
+
+.view {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  overflow: clip;
+  padding: clamp(10px, 1.8vh, 26px) calc(var(--stage-pad) + 22px) clamp(10px, 1.8vh, 26px) var(--stage-pad);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  row-gap: clamp(8px, 1.6vh, 22px);
+  min-height: 0;
+}
+.view :where(*) { min-width: 0; min-height: 0; } /* kill grid/flex auto-min blowouts */
+
+/* view head */
+.view-head { display: grid; row-gap: clamp(4px, 0.9vh, 10px); }
+.view-head h2 {
+  font-size: var(--t-h2);
+  font-weight: 800;
+  font-stretch: 120%;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.12; /* ascent headroom must survive fallback fonts too */
+}
+.view-sub { color: var(--paper-dim); max-width: 68ch; font-size: var(--t-body); }
+.view-sub strong { color: var(--paper); }
+
+/* ================= DOT RAIL ================= */
+.dot-rail {
+  position: absolute;
+  right: clamp(6px, 1vw, 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px; /* room for the 1.25× scaled active dot */
+  z-index: 30;
+}
+.dot-rail button {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid var(--steel-dim);
+  background: transparent;
+  transition: background var(--dur-ui) ease, border-color var(--dur-ui) ease, transform var(--dur-ui) var(--ease);
+}
+.dot-rail button:hover { border-color: var(--paper); transform: scale(1.2); }
+.dot-rail button[aria-current="true"] { background: var(--red); border-color: var(--red); transform: scale(1.25); }
+
+/* ================= UTILITY RAIL ================= */
+.utility-rail {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.6vw, 22px);
+  padding: 0 var(--stage-pad);
+  border-top: 1px solid var(--line);
+  background: var(--g-950);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  color: var(--steel);
+  white-space: nowrap;
+  min-width: 0;
+  position: relative;
+  z-index: 40;
+}
+.util-tel { border-bottom: 0; color: var(--paper); flex: none; }
+.util-note { flex: 0 1 auto; min-width: 0; overflow: clip; text-overflow: ellipsis; }
+.util-links { display: flex; gap: clamp(8px, 1.2vw, 18px); margin-left: auto; }
+.util-links a, .util-pop-btn { color: var(--steel); letter-spacing: 0.05em; font-family: var(--font-mono); font-size: var(--t-mono); }
+.util-links a:hover, .util-pop-btn:hover, .util-social a:hover { color: var(--paper); }
+.util-social { display: flex; gap: 10px; flex: none; }
+.util-social svg { width: 15px; height: 15px; }
+.util-copy { flex: none; color: var(--steel-dim); }
+
+.util-pop-wrap, .util-more-wrap { position: relative; display: inline-flex; }
+.util-pop {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--g-850);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 6px;
+  min-width: 170px;
+  box-shadow: 0 -10px 30px rgb(0 0 0 / 0.45);
+  z-index: 70;
+}
+.util-pop a { padding: 7px 10px; border-radius: 4px; }
+.util-pop a:hover { background: var(--g-800); }
+.util-copy--pop { padding: 7px 10px; color: var(--steel-dim); }
+.util-more-wrap { display: none; }
+
+@media (max-width: 768px) {
+  .util-note, .util-links, .util-copy { display: none; }
+  .util-social { margin-left: auto; }
+  .util-more-wrap { display: inline-flex; }
+}

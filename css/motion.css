@@ -1,0 +1,206 @@
+/* ============================================================
+   MOTION — view transitions, stagger, signature loops, FLIP.
+   Transform/opacity only. Reduced motion = crossfades only.
+   ============================================================ */
+
+/* ---------------- view transitions ----------------
+   Resting (inactive) views carry NO transform: transformed boxes
+   extend the stage's scrollable overflow area even under clip.
+   The directional offset exists only on .is-entering (one frame)
+   and .is-leaving (during the transition). */
+.view {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--dur-view) var(--ease),
+    transform var(--dur-view) var(--ease),
+    visibility 0s linear var(--dur-view);
+}
+.view.is-entering {
+  opacity: 0;
+  transform: translateX(calc(var(--dir, 1) * 7%));
+  visibility: visible;
+  transition: none;
+  will-change: transform, opacity;
+}
+.view.is-active {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity var(--dur-view) var(--ease),
+    transform var(--dur-view) var(--ease);
+  z-index: 2;
+}
+.view.is-leaving {
+  opacity: 0;
+  transform: translateX(calc(var(--dir, 1) * -7%));
+  z-index: 1;
+}
+
+/* pause everything inside non-active views */
+.view:not(.is-active) *, .view:not(.is-active) {
+  animation-play-state: paused !important;
+}
+
+/* ---------------- incoming stagger ---------------- */
+.view:not(.is-active) [data-stagger] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: none;
+}
+.view.is-active [data-stagger] {
+  opacity: 1;
+  transform: none;
+  /* delay ramp caps at 8 steps so dense grids don't drag the tail */
+  transition:
+    opacity 480ms var(--ease) calc(min(var(--i, 0), 8) * var(--stagger) + 140ms),
+    transform 480ms var(--ease) calc(min(var(--i, 0), 8) * var(--stagger) + 140ms);
+}
+
+/* kinetic headline: lines rise inside clipped wrappers */
+.view:not(.is-active) .hl-inner { transform: translateY(110%); transition: none; }
+.view.is-active .hl-inner {
+  transform: none;
+  transition: transform 700ms var(--ease);
+}
+.view.is-active .hl-line:nth-child(2) .hl-inner { transition-delay: 90ms; }
+
+/* ---------------- load sequence ---------------- */
+html:not(.js-ready) .view [data-stagger],
+html:not(.js-ready) .hl-inner { transition: none !important; }
+
+.js-ready .brand-mark { animation: markPop 600ms var(--ease) both; }
+.js-ready .brand-ring {
+  stroke-dasharray: 41;
+  stroke-dashoffset: 41;
+  animation: ringDraw 700ms 150ms var(--ease) forwards;
+}
+.js-ready .brand-name { animation: fadeIn 500ms 250ms ease both; }
+@keyframes markPop { from { transform: scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ringDraw { to { stroke-dashoffset: 0; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------------- tab panel swap ---------------- */
+.tabpanel { opacity: 1; transform: none; }
+.tabpanel.is-in {
+  animation: panelIn 360ms var(--ease) both;
+}
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* pager page swap (opacity-only) */
+.page-fade { animation: pageFade 240ms ease both; }
+@keyframes pageFade { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------------- signature: roller ---------------- */
+.rx-core, .rx-coat, .rx-cap, .rx-elast,
+.tx-l-shell, .tx-l-blast, .tx-l-lining, .tx-l-datum {
+  transition: transform 450ms var(--ease);
+}
+.signature .callout { opacity: 0; transition: opacity 320ms ease; }
+.signature.is-exploded .rx-core { transform: translateX(-40px); }
+.signature.is-exploded .rx-coat { transform: translateX(40px); }
+.signature.is-exploded .rx-cap { transform: translateX(58px); }
+.signature.is-exploded .callout { opacity: 1; }
+.signature.is-exploded .co-1 { transition-delay: 120ms; }
+.signature.is-exploded .co-2 { transition-delay: 220ms; }
+.signature.is-exploded .co-3 { transition-delay: 320ms; }
+
+.rx-sheen { animation: sheenSweep 8s var(--ease) infinite; }
+@keyframes sheenSweep {
+  0% { transform: skewX(-16deg) translateX(0); }
+  55% { transform: skewX(-16deg) translateX(880px); }
+  100% { transform: skewX(-16deg) translateX(880px); }
+}
+.rx-helix { animation: helixRun 6s linear infinite; }
+@keyframes helixRun { from { transform: translateX(0); } to { transform: translateX(-40px); } }
+.rx-spin { animation: spinCap 12s linear infinite; }
+@keyframes spinCap { to { transform: rotate(360deg); } }
+
+/* ---------------- signature: tank ---------------- */
+.signature--tank.is-exploded .tx-l-shell { transform: translateX(-18px); }
+.signature--tank.is-exploded .tx-l-blast { transform: translateX(-6px); }
+.signature--tank.is-exploded .tx-l-lining { transform: translateX(10px); }
+.signature--tank.is-exploded .tx-l-datum { transform: translateX(16px); }
+.tx-liquid { animation: liquidShift 5s ease-in-out infinite alternate; }
+@keyframes liquidShift { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+
+/* signature hover lift */
+.signature { transition: transform var(--dur-ui) var(--ease); }
+@media (hover: hover) {
+  .signature:hover { transform: translateY(-3px); }
+}
+
+/* ---------------- map pins ---------------- */
+.map-pins .pin-ring { animation: pinPulse 2.6s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes pinPulse {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  70% { transform: scale(2.1); opacity: 0; }
+  100% { transform: scale(2.1); opacity: 0; }
+}
+.loc--new ~ * .pin-ring { animation-duration: 2s; }
+
+/* ---------------- counters ---------------- */
+.count { font-variant-numeric: tabular-nums; }
+
+/* ---------------- success check ---------------- */
+.quote-success:not([hidden]) .success-check .check-ring {
+  stroke-dasharray: 176;
+  stroke-dashoffset: 176;
+  animation: ringDraw 600ms var(--ease) forwards;
+}
+.quote-success:not([hidden]) .success-check .check-mark {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: ringDraw 380ms 480ms var(--ease) forwards;
+}
+.quote-success:not([hidden]) > * { animation: panelIn 420ms var(--ease) both; }
+.quote-success:not([hidden]) > :nth-child(2) { animation-delay: 80ms; }
+.quote-success:not([hidden]) > :nth-child(3) { animation-delay: 150ms; }
+.quote-success:not([hidden]) > :nth-child(4) { animation-delay: 220ms; }
+.quote-success:not([hidden]) > :nth-child(5) { animation-delay: 290ms; }
+
+/* ---------------- FLIP shell (transform set inline by flip.js) ---------------- */
+.detail-card.flip-prep { transition: none; }
+.detail-card.flip-play { transition: transform 450ms var(--ease); }
+.ind-detail { transition: opacity 300ms ease; }
+.ind-detail.fade-prep { opacity: 0; transition: none; }
+.ind-detail.fade-in { opacity: 1; transition: opacity 300ms ease; }
+.ind-grid.is-dimmed .tile { opacity: 0.35; transition: opacity 300ms ease; }
+
+/* ---------------- magnetic CTA (JS sets --mx/--my) ---------------- */
+[data-magnetic] { transform: translate(var(--mx, 0), var(--my, 0)); }
+
+/* ============================================================
+   REDUCED MOTION — crossfades only, static SVGs, no loops.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .view, .view.is-active, .view.is-leaving {
+    transform: none !important;
+    transition: opacity 220ms ease, visibility 0s linear 220ms;
+  }
+  .view.is-active { transition: opacity 220ms ease; }
+  .view:not(.is-active) [data-stagger] { transform: none; }
+  .view.is-active [data-stagger] { transition: opacity 220ms ease; }
+  .view:not(.is-active) .hl-inner, .view.is-active .hl-inner { transform: none; transition: none; }
+  .rx-sheen, .rx-helix, .rx-spin, .tx-liquid, .map-pins .pin-ring,
+  .js-ready .brand-mark, .js-ready .brand-ring, .js-ready .brand-name {
+    animation: none !important;
+  }
+  .js-ready .brand-ring { stroke-dashoffset: 0; }
+  .rx-core, .rx-coat, .rx-cap, .tx-l-shell, .tx-l-blast, .tx-l-lining, .tx-l-datum { transition: none; }
+  .tabpanel.is-in, .page-fade { animation-duration: 180ms; }
+  .detail-card.flip-play { transition: none; }
+  .quote-success:not([hidden]) .success-check .check-ring,
+  .quote-success:not([hidden]) .success-check .check-mark {
+    animation: none; stroke-dashoffset: 0;
+  }
+  .quote-success:not([hidden]) > * { animation: pageFade 200ms ease both; }
+  [data-magnetic] { transform: none !important; }
+  .signature:hover { transform: none; }
+}
