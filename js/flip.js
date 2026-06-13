@@ -59,7 +59,8 @@ export function initIndustries() {
     if (restoreFocus && lastTile) lastTile.focus({ preventScroll: true });
   }
 
-  grid.querySelectorAll('.tile').forEach((tile) => {
+  grid.querySelectorAll('.tile').forEach((tile, i) => {
+    tile.dataset.index = String(i + 1).padStart(2, '0');
     tile.addEventListener('click', () => open(tile));
   });
   closeBtn.addEventListener('click', () => close());

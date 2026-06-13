@@ -33,7 +33,7 @@ test('tank svg crops to the wall band on mobile', async ({ page }, info) => {
   test.skip(info.project.name !== 'mobile-390', 'mobile project only');
   await page.goto('/');
   const vb = await page.locator('.tank-svg').getAttribute('viewBox');
-  expect(vb).toBe('180 170 240 250');
+  expect(vb).toBe('88 38 324 420');
 });
 
 test('facility hover lights its map pin', async ({ page }, info) => {

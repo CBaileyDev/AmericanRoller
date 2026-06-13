@@ -5,7 +5,9 @@
 
 const mqMobile = window.matchMedia('(max-width: 768px)');
 const TANK_FULL = '0 0 560 470';
-const TANK_BAND = '180 170 240 250';
+// Mobile shows the whole tank, tightly framed (no callout margins) —
+// a cropped wall band reads like a broken image at this size.
+const TANK_BAND = '88 38 324 420';
 
 export function initSignatures() {
   document.querySelectorAll('.signature').forEach((btn) => {

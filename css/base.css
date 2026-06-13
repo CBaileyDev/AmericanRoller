@@ -60,6 +60,13 @@ svg { display: block; }
 }
 
 .label-short { display: none; }
+
+/* pointer-aware verb in signature hints */
+.hint-click { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .hint-tap { display: none; }
+  .hint-click { display: inline; }
+}
 @media (max-width: 768px) {
   .label-long { display: none; }
   .label-short { display: inline; }
