@@ -1,0 +1,68 @@
+/* ============================================================
+   DESIGN TOKENS — American Roller
+   Palette: machined-steel neutrals + signal red.
+   AA contrast rules (enforced by convention):
+     paper on g-900 ≈ 13:1 OK · paper on red ≈ 5.4:1 OK ·
+     red on g-900 ≈ 2.9:1 FAIL → red on dark only as fills/strokes,
+     never as text smaller than decorative display.
+   ============================================================ */
+:root {
+  /* palette */
+  --g-950: #101216;
+  --g-900: #14171a;
+  --g-850: #1a1e22;
+  --g-800: #232830;
+  --gunmetal: #2e353d;
+  --line: #39414b;
+  --steel: #99a1ab;
+  --steel-dim: #6d7681;
+  --paper: #eef0f2;
+  --paper-dim: #c6cad0;
+  --red: #c8102e;
+  --red-hot: #d62828;
+
+  /* type */
+  --font-display: "Archivo", "Archivo Fallback", system-ui, sans-serif;
+  --font-body: "Inter", "Inter Fallback", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Plex Mono Fallback", monospace;
+
+  /* fluid sizes — display sizes track min(vw,vh) so short viewports compress */
+  --t-hero: clamp(1.9rem, min(3.9vw, 6.2vh), 3.3rem);
+  --t-h2: clamp(1.35rem, min(2.5vw, 4.2vh), 2.1rem);
+  --t-h3: clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
+  --t-body: clamp(0.82rem, 0.76rem + 0.25vw, 0.95rem);
+  --t-small: clamp(0.72rem, 0.68rem + 0.2vw, 0.82rem);
+  --t-mono: clamp(0.62rem, 0.58rem + 0.18vw, 0.74rem);
+
+  /* motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-view: 600ms;
+  --dur-ui: 240ms;
+  --stagger: 55ms;
+
+  /* shell */
+  --header-h: 60px;
+  --util-h: 36px;
+  --stage-pad: clamp(16px, 2.6vw, 44px);
+
+  /* misc */
+  --radius: 6px;
+  --emblem-accent: var(--red);
+}
+
+/* 1280×800 tier — the tightest stage (≈704px). Compress chrome a touch. */
+@media (max-height: 820px) and (min-width: 769px) {
+  :root {
+    --stage-pad: clamp(14px, 2.2vw, 32px);
+    --t-hero: clamp(1.8rem, min(3.6vw, 5.8vh), 2.9rem);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-h: 54px;
+    --util-h: 32px;
+    --stage-pad: 16px;
+    --stagger: 45ms;
+  }
+}
